@@ -1,0 +1,49 @@
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+
+public class IncomeManager extends JFrame {
+
+    public IncomeManager() {
+
+        setTitle("Income Manager");
+        setSize(400, 300);
+        setLayout(new FlowLayout());
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+
+        JLabel title = new JLabel("INCOME MANAGER");
+
+        JButton addIncome = new JButton("Add Income");
+        JButton viewIncome = new JButton("View Income");
+
+        add(title);
+        add(addIncome);
+        add(viewIncome);
+
+        addIncome.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new Income();
+            }
+        });
+
+        viewIncome.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+                JOptionPane.showMessageDialog(
+                    IncomeManager.this,
+                    "Income records will be displayed here."
+                );
+            }
+        });
+
+        setVisible(true);
+    }
+
+    public static void main(String[] args) {
+        new IncomeManager();
+    }
+}
