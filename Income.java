@@ -1,7 +1,15 @@
-JTextField amountField;
+
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+
+public class Income extends JFrame {
+
+    JTextField amountField;
     JTextField sourceField;
 
     public Income() {
+
         setTitle("Income");
         setSize(400, 300);
         setLayout(new FlowLayout());
@@ -25,29 +33,55 @@ JTextField amountField;
         add(addButton);
 
         addButton.addActionListener(new ActionListener() {
+
             public void actionPerformed(ActionEvent e) {
 
-                if (amountField.getText().isEmpty()
-                        || sourceField.getText().isEmpty()) {
+                if (amountField.getText().trim().isEmpty()
+                        || sourceField.getText().trim().isEmpty()) {
 
                     JOptionPane.showMessageDialog(
-                        Income.this,
-                        "Please enter all details."
+                            Income.this,
+                            "Please enter all details."
                     );
 
                 } else {
 
-                    JOptionPane.showMessageDialog(
-                        Income.this,
-                        "Income added successfully!"
-                    );
+                    try {
+                        double amountValue = Double.parseDouble(
+                                amountField.getText().trim()
+                        );
+
+                        if (amountValue <= 0) {
+                            JOptionPane.showMessageDialog(
+                                    Income.this,
+                                    "Amount must be greater than zero."
+                            );
+                            return;
+                        }
+
+                        JOptionPane.showMessageDialog(
+                                Income.this,
+                                "Income added successfully!"
+                        );
+
+                        amountField.setText("");
+                        sourceField.setText("");
+
+                    } catch (NumberFormatException ex) {
+                        JOptionPane.showMessageDialog(
+                                Income.this,
+                                "Please enter a valid amount."
+                        );
+                    }
                 }
             }
         });
 
+        setLocationRelativeTo(null);
         setVisible(true);
     }
-public static void main(String[] args) {
+
+    public static void main(String[] args) {
         new Income();
     }
 }
