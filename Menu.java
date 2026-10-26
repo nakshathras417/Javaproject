@@ -44,13 +44,13 @@ public class Menu extends JFrame {
 
         incomeButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                new IncomeManager();
+                new Income();
             }
         });
 
         expenseButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                new ExpenseManager();
+                new Expense();
             }
         });
 
